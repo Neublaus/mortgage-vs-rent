@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Tone Automation</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="panel settings-panel" aria-labelledby="settings-title">
+        <div>
+          <p class="eyebrow">Settings</p>
+          <h1 id="settings-title">Master look and feel</h1>
+          <p class="lede">Upload a master image once. Every image uploaded in the automation window is matched to its color tone, contrast, and overall mood.</p>
+        </div>
+
+        <label class="upload-card" for="master-upload">
+          <input id="master-upload" type="file" accept="image/*" />
+          <span class="upload-icon" aria-hidden="true">◎</span>
+          <span class="upload-title">Upload master image</span>
+          <span class="upload-hint">Used as the style reference</span>
+        </label>
+
+        <div class="preview-frame">
+          <canvas id="master-canvas" aria-label="Master image preview"></canvas>
+          <p id="master-empty" class="empty-state">No master uploaded yet.</p>
+        </div>
+
+        <dl class="tone-readout" aria-label="Detected master tone values">
+          <div><dt>Warmth</dt><dd id="warmth-value">—</dd></div>
+          <div><dt>Brightness</dt><dd id="brightness-value">—</dd></div>
+          <div><dt>Contrast</dt><dd id="contrast-value">—</dd></div>
+        </dl>
+      </section>
+
+      <section class="panel automation-launcher" aria-labelledby="automation-title">
+        <p class="eyebrow">Automation</p>
+        <h2 id="automation-title">Open the upload window</h2>
+        <p class="lede">Use the button below to open the image-upload automation window. Uploaded images will match the master image from settings.</p>
+        <button id="open-automation" class="primary-upload" type="button">Open upload window</button>
+        <div id="launcher-status" class="status-pill">Upload a master image first for best results.</div>
+      </section>
+
+      <dialog id="automation-dialog" class="automation-dialog" aria-labelledby="dialog-title">
+        <section class="panel automation-panel">
+          <div class="window-bar">
+            <span></span><span></span><span></span>
+            <button id="close-automation" class="close-button" type="button" aria-label="Close upload window">×</button>
+          </div>
+          <div>
+            <p class="eyebrow">Automation window</p>
+            <h2 id="dialog-title">Upload images to auto-match</h2>
+            <p class="lede">Drop or choose images here. The preview updates immediately to match the uploaded master by color tone and look.</p>
+          </div>
+
+          <label class="primary-upload" for="image-upload">
+            <input id="image-upload" type="file" accept="image/*" multiple />
+            <span>Upload images</span>
+          </label>
+
+          <div id="drop-zone" class="drop-zone">Drop images here to match them to the master.</div>
+          <div id="gallery" class="gallery" aria-live="polite"></div>
+        </section>
+      </dialog>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
