@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#171a1b" />
+  <title>Global GDP — 1960 to Today</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">INTERACTIVE DATA VISUALIZATION</p>
+        <h1>GLOBAL GDP <span id="headlineYear">2024</span></h1>
+      </div>
+      <div class="topbar__meta">
+        <span id="browserBadge" class="badge">Browser</span>
+        <button id="fullscreenBtn" class="ghost-button" type="button">Fullscreen</button>
+      </div>
+    </header>
+
+    <section class="hero-grid">
+      <aside class="intro-panel">
+        <div class="mini-globe" aria-hidden="true"></div>
+        <p>
+          Gross domestic product (GDP) is the market value of final goods and services produced by a country in a year.
+          Circle area represents nominal GDP in current U.S. dollars.
+        </p>
+        <p class="source-copy">Source: World Bank indicator <strong>NY.GDP.MKTP.CD</strong>.</p>
+      </aside>
+
+      <section class="chart-card" aria-label="Animated global GDP circle-packing chart">
+        <div id="loading" class="loading">Loading historical GDP data…</div>
+        <svg id="chart" role="img" aria-labelledby="chartTitle chartDesc">
+          <title id="chartTitle">Global GDP by country and region</title>
+          <desc id="chartDesc">An animated circle-packing visualization where larger circles represent larger national economies.</desc>
+        </svg>
+        <div id="tooltip" class="tooltip" hidden></div>
+      </section>
+
+      <aside class="ranking-panel">
+        <div class="ranking-panel__header">
+          <span>TOP ECONOMIES</span>
+          <span id="rankingYear">2024</span>
+        </div>
+        <ol id="rankingList" class="ranking-list"></ol>
+      </aside>
+    </section>
+
+    <section class="controls" aria-label="Animation controls">
+      <button id="playBtn" class="play-button" type="button" aria-label="Play animation">▶</button>
+      <div class="timeline-wrap">
+        <div class="timeline-labels"><span>1960</span><strong id="selectedYear">2024</strong><span>2024</span></div>
+        <input id="yearSlider" type="range" min="1960" max="2024" value="2024" step="1" />
+      </div>
+      <label class="speed-control">Speed
+        <select id="speedSelect">
+          <option value="1200">Slow</option>
+          <option value="650" selected>Normal</option>
+          <option value="300">Fast</option>
+        </select>
+      </label>
+    </section>
+
+    <footer>
+      <span>Nominal GDP, current US$</span>
+      <span>Use the slider, press Play, or click a country.</span>
+    </footer>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
